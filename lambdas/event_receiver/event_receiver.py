@@ -1,4 +1,5 @@
 import json
+import os
 import uuid
 from datetime import datetime
 
@@ -7,7 +8,16 @@ import boto3
 
 def lambda_handler(event, context):
     resource = boto3.resource("dynamodb")
-    table = resource.Table("Demo-Dev-eventbridge_demo_table")
+    try:
+        app_name = os.environ['app_name']
+        environment = os.environ['environment']
+        dynamodb_table_name = os.environ['dynamodb_table_name']
+    except KeyError as ex:
+        return {
+            'statusCode': 500,
+            'body': json.dumps('Environment variable `{}` not set.'.format(str(ex)))
+        }
+    table = resource.Table('{}-{}-{}'.format(app_name, environment, dynamodb_table_name))
     if event['source'] == 'learn.eventbridge':
         try:
             response = table.put_item(

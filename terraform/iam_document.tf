@@ -39,3 +39,15 @@ data "aws_iam_policy_document" "dynamodb_put_item_policy_document" {
     resources = ["*"]
   }
 }
+
+data "aws_iam_policy_document" "kms_decryption_policy_document" {
+  version = "2012-10-17"
+  statement {
+    effect = "Allow"
+    actions = [
+      "kms:Decrypt"
+    ]
+    // This can be specic ARN too.
+    resources = ["*"]
+  }
+}

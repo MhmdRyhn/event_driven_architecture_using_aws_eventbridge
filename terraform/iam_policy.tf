@@ -9,3 +9,9 @@ resource "aws_iam_role_policy" "dynamodb_put_item_inline_policy" {
   role   = aws_iam_role.lambda_put_item_to_dynamodb.id
   policy = data.aws_iam_policy_document.dynamodb_put_item_policy_document.json
 }
+
+resource "aws_iam_role_policy" "kms_decryption_inline_policy" {
+  name   = "KMSKeyDecryptionInlinePolicy"
+  role   = aws_iam_role.lambda_put_item_to_dynamodb.id
+  policy = data.aws_iam_policy_document.kms_decryption_policy_document.json
+}
