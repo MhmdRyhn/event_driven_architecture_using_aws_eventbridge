@@ -6,8 +6,8 @@
 // this demonstration.
 
 resource "aws_cloudwatch_event_rule" "event_rule" {
-  name = "LambdaToLambdaEventDrivenRule"
-  description = "Sends events to target lambda."
+  name          = "${local.resource_name_prefix}-LambdaToLambdaEventDrivenRule"
+  description   = "Sends events to target lambda."
   event_pattern = <<PATTERN
 {
 	"source": [
@@ -22,6 +22,6 @@ PATTERN
 
 resource "aws_cloudwatch_event_target" "event_target" {
   target_id = "LambdaToLambda"
-  rule = aws_cloudwatch_event_rule.event_rule.name
-  arn = aws_lambda_function.event_receiver_lambda.arn
+  rule      = aws_cloudwatch_event_rule.event_rule.name
+  arn       = aws_lambda_function.event_receiver_lambda.arn
 }

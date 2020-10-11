@@ -1,0 +1,22 @@
+{
+	"Resources": {
+		"rule": {
+			"Type": "AWS::Events::Rule",
+			"Properties": {
+				"Description": "String",
+				"EventBusName": "default",
+				"EventPattern": {
+					"source": [
+						"learn.eventbridge.edu"
+					],
+					"detail-type": [
+						"Learning Eventbridge"
+					]
+				},
+				"Name": "LambdaToLambdaEventTransferRule",
+				"State": "ENABLED",
+				"Targets": []
+			}
+		}
+	}
+}

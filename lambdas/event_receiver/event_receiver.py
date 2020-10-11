@@ -7,7 +7,7 @@ import boto3
 
 def lambda_handler(event, context):
     resource = boto3.resource("dynamodb")
-    table = resource.Table("test-table")
+    table = resource.Table("Demo-Dev-eventbridge_demo_table")
     if event['source'] == 'learn.eventbridge':
         try:
             response = table.put_item(
