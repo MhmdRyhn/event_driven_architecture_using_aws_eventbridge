@@ -1,0 +1,2 @@
+# event_driven_architecture_using_aws_eventbridge
+Service to service communication using AWS EventBridge
