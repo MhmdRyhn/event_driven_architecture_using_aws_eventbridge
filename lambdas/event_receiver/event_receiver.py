@@ -41,3 +41,7 @@ def lambda_handler(event, context):
                 'statusCode': 500,
                 'body': json.dumps(str(ex))
             }
+    return {
+        'statusCode': 403,
+        'body': json.dumps('Event generated from unexpected source.')
+    }
