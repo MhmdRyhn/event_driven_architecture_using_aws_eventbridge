@@ -7,6 +7,18 @@ import boto3
 
 
 def lambda_handler(event, context):
+    """
+    This Lambda function is invoked by AWS EventBridge only
+    when the event put in EventBridge matches the pattern
+    in the EventBridge's Rule.
+    Then this function puts the event details into a DynamoDB
+    table with some additional information.
+
+    :param event: event from Amazon EventBridge rule
+    :param context: context
+    :return: response as dict
+    """
+
     try:
         app_name = os.environ['app_name']
         environment = os.environ['environment']
