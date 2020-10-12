@@ -1,5 +1,5 @@
 // ************************ NOTE ***************************
-// At the time of creating this repository,
+// At the time of creating this repository (October 11, 2020),
 // Terraform AWS provider has not yet implemented the EventBridge resources.
 // But, as the CloudWatch Event is a subset of EventBridge, we can use use
 // Cloudwatch Events because we are using the default event bus and are not

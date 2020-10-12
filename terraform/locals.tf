@@ -3,3 +3,7 @@ locals {
   python_runtime       = "python3.6"
   dynamodb_table_name  = "eventbridge_demo_table"
 }
+
+locals {
+  build_dir = "${path.module}/../.build"
+}
