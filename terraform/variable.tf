@@ -6,6 +6,7 @@ variable "aws_profile" {
 variable "aws_region" {
   type        = string
   description = "Name of the aws region."
+  default     = "ap-southeast-1" // Singapore
 }
 
 variable "prefix" {
@@ -20,5 +21,5 @@ variable "environment" {
 
 variable "eventbridge_target_lambda_name" {
   type        = string
-  description = "Name of the AWS Lambda function that is to be used as eventbridge target."
+  description = "Name of the AWS Lambda function that is to be used for eventbridge rule's target."
 }

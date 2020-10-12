@@ -7,7 +7,6 @@ import boto3
 
 
 def lambda_handler(event, context):
-    resource = boto3.resource("dynamodb")
     try:
         app_name = os.environ['app_name']
         environment = os.environ['environment']
@@ -17,8 +16,9 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': json.dumps('Environment variable `{}` not set.'.format(str(ex)))
         }
+    resource = boto3.resource("dynamodb")
     table = resource.Table('{}-{}-{}'.format(app_name, environment, dynamodb_table_name))
-    if event['source'] == 'learn.eventbridge':
+    if event.get('source') == 'learn.eventbridge':
         try:
             response = table.put_item(
                 Item={
@@ -31,10 +31,10 @@ def lambda_handler(event, context):
                 'statusCode': 200,
                 'body': json.dumps('Event detail has been saved into DynamoDB table successfully.')
             }
-        except KeyError:
+        except KeyError as ex:
             return {
                 'statusCode': 500,
-                'body': json.dumps('`detail` key is not found in `event`')
+                'body': json.dumps('Key `{}` is not found in the event.'.format(str(ex)))
             }
         except Exception as ex:
             return {

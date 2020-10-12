@@ -7,8 +7,7 @@ resource "aws_lambda_function" "event_putter_lambda" {
   role             = aws_iam_role.lambda_put_events_to_event_bus_role.arn
   runtime          = local.python_runtime
   timeout          = 10
-  layers = [
-  aws_lambda_layer_version.lambda_layer_boto3.arn]
+  layers           = [aws_lambda_layer_version.lambda_layer_boto3.arn]
 }
 
 resource "aws_lambda_function" "event_receiver_lambda" {
@@ -20,8 +19,7 @@ resource "aws_lambda_function" "event_receiver_lambda" {
   role             = aws_iam_role.lambda_put_item_to_dynamodb.arn
   runtime          = local.python_runtime
   timeout          = 10
-  layers = [
-  aws_lambda_layer_version.lambda_layer_boto3.arn]
+  layers           = [aws_lambda_layer_version.lambda_layer_boto3.arn]
 
   environment {
     variables = {
